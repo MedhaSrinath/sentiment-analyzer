@@ -1,19 +1,18 @@
 import streamlit as st
-from textblob import TextBlob
+from sentiment import analyze_sentiment
 
 st.title("🧠 AI Sentiment Analyzer")
 
 user_input = st.text_area("Enter your text:")
 
-if st.button("Analyze"):
-    blob = TextBlob(user_input)
-    polarity = blob.sentiment.polarity
+if user_input:
+    result, score = analyze_sentiment(user_input)
 
-    if polarity > 0:
-        st.success("Positive 😊")
-    elif polarity < 0:
-        st.error("Negative 😡")
+    if "Positive" in result:
+        st.success(result)
+    elif "Negative" in result:
+        st.error(result)
     else:
-        st.info("Neutral 😐")
+        st.info(result)
 
-    st.write("Score:", polarity)
+    st.write("Score:", score)

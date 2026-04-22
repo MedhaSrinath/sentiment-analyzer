@@ -1,21 +1,12 @@
 from textblob import TextBlob
 
-print("AI Sentiment Analyzer:")
-while True:
-    user_input = input("Enter something: ")
-    if user_input.lower() == "exit":
-        print("Goodbye👋")
-        break
-        
-    blob = TextBlob(user_input)
+def analyze_sentiment(text):
+    blob = TextBlob(text)
     polarity = blob.sentiment.polarity
 
     if polarity > 0:
-        print("Positive 😊")
+        return "Positive 😊", polarity
     elif polarity < 0:
-        print("Negative 😡")
+        return "Negative 😡", polarity
     else:
-        print("Neutral 😐")
-
-    print("Score:", polarity)
-        
+        return "Neutral 😐", polarity
