@@ -1,15 +1,6 @@
 from textblob import TextBlob
 
-print("Mood AI Assistant 🤖")
-print("Type 'exit' to stop\n")
-
-while True:
-    text = input("Tell me about your day: ")
-
-    if text.lower() == "exit":
-        print("Goodbye! Take care! 👋")
-        break
-
+def analyze_mood(text):
     blob = TextBlob(text)
     polarity = blob.sentiment.polarity
     text_lower = text.lower()
@@ -43,27 +34,4 @@ while True:
         mood = "neutral"
         intensity = "neutral"
 
-    print(f"Mood detected: {mood} ({intensity})")
-
-    if mood == "happy":
-        if intensity == "strong":
-            print("You're glowing today! Keep that energy going ✨🔥")
-        else:
-            print("Nice! Glad things are going well 🙂")
-
-    elif mood == "sad":
-        if intensity == "strong":
-            print("That sounds really tough 💙 Take a deep breath, you're not alone.")
-        else:
-            print("Hope things get better soon 🌿")
-
-    elif mood == "angry":
-        print("I can feel that intensity 😤 Try pausing for a moment and breathe.")
-
-    elif mood == "stressed":
-        print("You're carrying a lot. Maybe step away and reset a bit ☕")
-
-    else:
-        print("Steady and calm 😌 Hope your day stays balanced.")
-
-    print()
+    return mood, intensity
