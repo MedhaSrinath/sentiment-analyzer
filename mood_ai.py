@@ -5,33 +5,23 @@ def analyze_mood(text):
     polarity = blob.sentiment.polarity
     text_lower = text.lower()
 
-    # 🎭 Detect mood with intensity
     if any(word in text_lower for word in ["angry", "mad", "furious"]):
-        mood = "angry"
-        intensity = "strong"
+        return "angry", "strong"
 
     elif any(word in text_lower for word in ["tired", "exhausted", "stressed"]):
-        mood = "stressed"
-        intensity = "moderate"
+        return "stressed", "moderate"
 
     elif polarity > 0.6:
-        mood = "happy"
-        intensity = "strong"
+        return "happy", "strong"
 
     elif polarity > 0.3:
-        mood = "happy"
-        intensity = "mild"
+        return "happy", "mild"
 
     elif polarity < -0.6:
-        mood = "sad"
-        intensity = "strong"
+        return "sad", "strong"
 
     elif polarity < -0.3:
-        mood = "sad"
-        intensity = "mild"
+        return "sad", "mild"
 
     else:
-        mood = "neutral"
-        intensity = "neutral"
-
-    return mood, intensity
+        return "neutral", "neutral"
